@@ -9,12 +9,16 @@ from selenium.webdriver import ActionChains
 from urllib.request import urlopen
 import urllib.request
 import os
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 def start(): #0번
     global browser
     global stacked_data
     print('시작합니다.')
-    browser = webdriver.Chrome('chromedriver.exe')
+    chrome_options = webdriver.ChromeOptions()
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     stacked_data=[]
     return
 
@@ -376,6 +380,3 @@ def start_Macro():
         num=lines[i][2]
         print(num)
         module(num,value,ndex_cnt)
-
-if __name__ == '__main__':
-    pass
